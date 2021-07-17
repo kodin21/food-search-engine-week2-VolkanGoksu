@@ -121,7 +121,4 @@ function removeFavourite(id) {
   }
 }
 
-let data = document.getElementById("data");
-data.onclick = function () {
-  alert("test");
-};
+
