@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
-  background-color: #ff4500;
+  /* background-color: #C8D5E9; */
+  background-color: #E1E8ED
 }
 
 * {
@@ -22,37 +23,30 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 20px;
+  list-style: none;
 }
 
 .data {
-  list-style-type: none;
-  background-color: #f0f8ff;
   border-radius: 3px;
   padding: 10px 20px;
-  /* display: grid; */
-  /* grid-template-columns: 3fr 1fr; */
   grid-template-areas:
     "name image"
     "house image";
+  display: inline-block;
   cursor: pointer;
-  border: 1px solid;
-
-  width: 400px;
+  
+  background-color: #E1E8ED
 }
 
-.data :hover {
-  opacity: 2.1;
-}
 .favoriData {
-  list-style-type: none;
-  background-color: red;
   border-radius: 3px;
   padding: 10px 20px;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
   grid-template-areas:
     "name image"
     "house image";
+  display: inline-block;
+  cursor: pointer;
+  background-color: red;
 }
 
 .data > h2 {
@@ -111,4 +105,35 @@ h1 {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+#spinner:not([hidden]) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#spinner::after {
+  content: "";
+  width: 80px;
+  height: 80px;
+  border: 2px solid #f3f3f3;
+  border-top: 3px solid #f25a41;
+  border-radius: 100%;
+  will-change: transform;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

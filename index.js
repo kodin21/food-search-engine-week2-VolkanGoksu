@@ -1,5 +1,8 @@
 const foodList = document.getElementById("foodList");
 const searcBar = document.getElementById("searchBar");
+const spinner = document.getElementById("spinner");
+
+spinner.removeAttribute("hidden");
 
 let foodArray = [];
 
@@ -23,14 +26,15 @@ fetch("https://jsonplaceholder.typicode.com/users/1")
 
 //Fetch Foods
 const fetchFood = async () => {
-  try {
-    let response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    foodArray = await response.json();
-    fetchFoodDisplay(foodArray);
-    // return data;
-  } catch (error) {
-    console.log(err);
-  }
+    try {
+      let response = await fetch("https://jsonplaceholder.typicode.com/todos");
+      foodArray = await response.json();
+      spinner.setAttribute("hidden", "");
+      fetchFoodDisplay(foodArray);
+      // return data;
+    } catch (error) {
+      console.log(err);
+    }
 };
 
 //Show Foods
@@ -48,6 +52,10 @@ const fetchFoodDisplay = (foods) => {
     var li = document.createElement("li");
     li.id = "li" + id;
     li.className = className;
+    li.onclick = function(e){
+      if(!li.style.border) li.style.border = "1px solid black"
+      else li.style.border = ""
+    }    
 
     var h2 = document.createElement("h2");
     h2.innerHTML = food.title;
@@ -74,7 +82,10 @@ const fetchFoodDisplay = (foods) => {
     foodList.append(li);
   });
 };
-fetchFood();
+
+setTimeout(() => {
+  fetchFood();
+}, 1000);
 
 //Add Favourite
 function addFavourite(id) {
@@ -109,3 +120,8 @@ function removeFavourite(id) {
     localStorage.setItem("favFoods", JSON.stringify(newFavFoods));
   }
 }
+
+let data = document.getElementById("data");
+data.onclick = function () {
+  alert("test");
+};
